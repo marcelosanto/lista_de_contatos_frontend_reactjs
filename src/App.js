@@ -1,6 +1,7 @@
 import React from 'react'
-import './App.css'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
+import './App.css'
 import FooterComponente from './components/FooterComponente'
 import HeaderComponente from './components/HeaderComponente'
 import ListaDeContatosComponente from './components/ListaDeContatosComponente'
@@ -8,11 +9,19 @@ import ListaDeContatosComponente from './components/ListaDeContatosComponente'
 function App() {
   return (
     <>
-      <HeaderComponente />
-      <div className='container'>
-        <ListaDeContatosComponente />
-      </div>
-      <FooterComponente />
+      <Router>
+        <HeaderComponente />
+        <div className='container'>
+          <Switch>
+            <Route path='/' component={ListaDeContatosComponente}></Route>
+            <Route
+              path='/contatos'
+              component={ListaDeContatosComponente}
+            ></Route>
+          </Switch>
+        </div>
+        <FooterComponente />
+      </Router>
     </>
   )
 }
