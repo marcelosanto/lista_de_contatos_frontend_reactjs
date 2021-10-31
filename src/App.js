@@ -1,11 +1,11 @@
+import React from 'react'
 import './App.css'
+import ListaDeContatosComponente from './components/ListaDeContatosComponente'
 
 function App() {
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <p>Testando</p>
-      </header>
+    <div className='container'>
+      <ListaDeContatosComponente />
     </div>
   )
 }
