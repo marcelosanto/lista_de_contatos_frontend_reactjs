@@ -6,6 +6,10 @@ class ContatosService {
   getContatos() {
     return axios.get(CONTATOS_API_BASE_URL)
   }
+
+  createContato(contato) {
+    return axios.post(CONTATOS_API_BASE_URL, contato)
+  }
 }
 
 export default new ContatosService()
