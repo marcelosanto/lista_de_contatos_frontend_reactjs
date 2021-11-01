@@ -2,10 +2,12 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import './App.css'
-import CriarContatoComponente from './components/CriarContatoComponente'
+
+import ContatoComponente from './components/ContatoComponente'
 import FooterComponente from './components/FooterComponente'
 import HeaderComponente from './components/HeaderComponente'
 import ListaDeContatosComponente from './components/ListaDeContatosComponente'
+import ViewContatoComponent from './components/ViewContatoComponent'
 
 function App() {
   return (
@@ -20,8 +22,11 @@ function App() {
             <Route path='/contatos'>
               <ListaDeContatosComponente />
             </Route>
-            <Route path='/add-contato'>
-              <CriarContatoComponente />
+            <Route path='/add-contato/:id'>
+              <ContatoComponente />
+            </Route>
+            <Route path='/contato/:id'>
+              <ViewContatoComponent />
             </Route>
           </Switch>
         </div>

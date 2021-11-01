@@ -46,3 +46,9 @@
   text-align: center;
   color: white;
 }
+
+.table,
+th,
+td {
+  text-align: center;
+}

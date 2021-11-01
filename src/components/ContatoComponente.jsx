@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 import ContatosService from '../services/ContatosService'
 
@@ -9,6 +9,20 @@ export default function CriarContatoComponente() {
   const [emailId, setEmailId] = useState('')
 
   let history = useHistory()
+  const { id } = useParams()
+
+  useEffect(() => {
+    if (id == -1) {
+      return
+    } else {
+      ContatosService.getContatoById(id).then((res) => {
+        let contato = res.data
+        setNome(contato.nome)
+        setSobrenome(contato.sobrenome)
+        setEmailId(contato.emailId)
+      })
+    }
+  }, [])
 
   const handleNomeChange = (envt) => {
     setNome(envt.target.value)
@@ -26,7 +40,16 @@ export default function CriarContatoComponente() {
     e.preventDefault()
 
     let contato = { nome: nome, sobrenome: sobrenome, emailId: emailId }
-    ContatosService.createContato(contato).then((res) => history.push('/'))
+
+    if (id == -1) {
+      ContatosService.createContato(contato).then((res) =>
+        history.push('/contatos')
+      )
+    } else {
+      ContatosService.updateContato(id, contato).then((res) =>
+        history.push('/contatos')
+      )
+    }
   }
 
   const handlerCancelar = () => {
@@ -38,7 +61,9 @@ export default function CriarContatoComponente() {
       <div className='container'>
         <div className='row'>
           <div className='card col-md-6 offset-md-3 offset-md-3'>
-            <h3 className='text-center'>Add Contato</h3>
+            <h3 className='text-center'>
+              {id > 0 ? 'Atualizar Contato' : 'Adicionar Contato'}
+            </h3>
             <div className='card-body'>
               <form>
                 <div className='mb-3 row'>
