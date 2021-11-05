@@ -36,7 +36,11 @@ const ListaDeContatosComponente = () => {
       <h2 className='text-center'>Lista de Contatos</h2>
 
       <div>
-        <button className='btn btn-primary' onClick={addContato}>
+        <button
+          className='btn btn-primary'
+          style={{ margin: '20px' }}
+          onClick={addContato}
+        >
           Add Contato
         </button>
       </div>
